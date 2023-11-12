@@ -1,5 +1,6 @@
-import GenerateCatsInfo from './components/GenerateCatsInfo'
 import './App.css'
+import Card from './components/CatsCard'
+import GenerateCatsInfo from './components/GenerateCatsInfo'
 
 function App() {
 
