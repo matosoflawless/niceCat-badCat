@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 
 
 
@@ -13,6 +13,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 function CatsCard(props) {
 
   const avarageWeight = ((props.data.max_weight + props.data.min_weight) / 2)
+  const avarageLifeExpectency = ((props.data.max_life_expectancy + props.data.min_life_expectancy ) /2)
   // const catsProperties = {
 
 
@@ -37,40 +38,46 @@ function CatsCard(props) {
 
   return (
 
-    <Card className='cat-card-main-div' sx={{ width: 450, border: 2, margin: 2, }}>
+    <Card sx={{ width: 450, border: 2, margin: 2, }}>
       <CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Favourite
-        </Button>
-      </CardActions>
+        <CardActions>
+          <Button size="small" color="primary">
+            Favourite
+          </Button>
+        </CardActions>
         <CardMedia className='cats_image'
           component="img"
           height="350px"
           image={props.data.image_link}
           alt="cats"
           sx={{ objectFit: "cover", width: 1 }}
-        
+
         />
         <CardContent>
 
+          <Box sx={{display:"flex", justifyContent:"space-evenly", flexDirection:"column"}}>
+            <Typography className='title' variant="h4" component="div" align='center' marginBottom={2}>
+              {props.data.name}
+            </Typography>
+            <Typography variant="h5" color="text.secondary" marginBottom={2} align='center'>
+              {props.data.origin}
+            </Typography>
+            <Box sx={{display:"flex", justifyContent:"space-between"}}>
+            <Typography >
+              Avarage Weight: {avarageWeight}
+            </Typography>
+            <Typography>
+              Length: {props.data.length}
+            </Typography>
+            </Box>
+            <Typography align='center' margin={2}>
+              Average Life Expectancy: {avarageLifeExpectency}
+            </Typography>
+          </Box>
 
-          <Typography gutterBottom variant="h5" component="div">
-            {props.data.name}
-          </Typography>
-          <Typography variant="h5" color="text.secondary">
-            {props.data.origin}
-          </Typography>
-          <Typography>
-            Avarage Weight: {avarageWeight}
-          </Typography>
-          <Typography>
-            Length: {props.data.length}
-            
-          </Typography>
         </CardContent>
       </CardActionArea>
-     
+
     </Card>
 
   )

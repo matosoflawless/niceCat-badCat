@@ -59,7 +59,7 @@ function GenerateCatsInfo() {
         <>
             <Searchbar handleSearch={handleSearchCatsByNameAndOrigin} />
             {/* container que vai levar com as cartas dos gatinhos */}
-            <Box display={"flex"} flexWrap={"wrap"} border={2} borderColor={'black'} alignItems={"center"} justifyContent={"space-around"} margin={5} flexDirection={""}>
+            <Box display={"flex"} flexWrap={"wrap"} border={2} borderColor={'black'} alignItems={"center"} justifyContent={"space-around"} margin={5}>
                 {catsData.map((cat, index) => {
                     return (
                         <CatsCard key={index} data={cat} />
