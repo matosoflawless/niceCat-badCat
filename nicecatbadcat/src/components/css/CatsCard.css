@@ -1,1 +1,15 @@
-    
+.progress-bar-parent {
+    position: relative;
+    height: 40px;
+    width: 100%;
+}
+
+.progress-bar-child {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    background-color: green;
+}
