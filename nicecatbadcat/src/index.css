@@ -13,13 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   width: 100vw;
+  overflow-x: hidden;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 320px;
-  min-height: 100vh;
-}
+
 
