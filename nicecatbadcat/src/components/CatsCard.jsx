@@ -1,20 +1,27 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
-import { Progress } from 'flowbite-react';
 
-
+import "./css/CatsCard.css"
 
 
 function CatsCard(props) {
 
+
   const avarageWeight = ((props.data.max_weight + props.data.min_weight) / 2)
   const avarageLifeExpectency = ((props.data.max_life_expectancy + props.data.min_life_expectancy) / 2)
+  
+  
+  const handleFavouriteAdd = () => {
+
+  }
+  
+  
   // const catsProperties = {
 
 
@@ -39,10 +46,10 @@ function CatsCard(props) {
 
   return (
 <>
-    <Card sx={{ width: 450, border: 2, margin: 2 }}>
+    <Card sx={{ width: 450, border: 2, margin: 2, height:"fit-content" }}>
       <CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button onClick={props.addFavourite} size="small" color="primary">
             Favourite
           </Button>
         </CardActions>
@@ -77,7 +84,7 @@ function CatsCard(props) {
           </Box>
         <Box>
           <div className='progress-bar-parent'>
-            <div className='progress-bar-child'>
+            <div className='progress-bar-child' style={{width:"20%"}}>
             </div>
           </div>
         </Box>
