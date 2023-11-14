@@ -15,13 +15,10 @@ function CatsCard(props) {
 
   const avarageWeight = ((props.data.max_weight + props.data.min_weight) / 2)
   const avarageLifeExpectency = ((props.data.max_life_expectancy + props.data.min_life_expectancy) / 2)
-  
-  
-  const handleFavouriteAdd = () => {
 
-  }
-  
-  
+
+
+
   // const catsProperties = {
 
 
@@ -42,58 +39,60 @@ function CatsCard(props) {
 
   // }
   // eslint-disable-next-line react/prop-types
-  console.log(props.data)
+
 
   return (
-<>
-    <Card sx={{ width: 450, border: 2, margin: 2, height:"fit-content" }}>
-      <CardActionArea>
-        <CardActions>
-          <Button onClick={props.addFavourite} size="small" color="primary">
-            Favourite
-          </Button>
-        </CardActions>
-        <CardMedia className='cats_image'
-          component="img"
-          height="350px"
-          image={props.data.image_link}
-          alt="cats"
-          sx={{ objectFit: "cover", width: 1 }}
+    <>
+      <Card sx={{ width: 450, border: 2, margin: 2, height: "fit-content" }}>
+        <CardActionArea>
+          <CardActions>
+            <Button onClick={() => {
+              props.addToFavourite(props.data)
+            }} size="small" color="primary">
+              Favourite
+            </Button>
+          </CardActions>
+          <CardMedia className='cats_image'
+            component="img"
+            height="350px"
+            image={props.data.image_link}
+            alt="cats"
+            sx={{ objectFit: "cover", width: 1 }}
 
-        />
-        <CardContent>
+          />
+          <CardContent>
 
-          <Box sx={{ display: "flex", justifyContent: "space-evenly", flexDirection: "column" }}>
-            <Typography className='title' variant="h4" component="div" align='center' marginBottom={2}>
-              {props.data.name}
-            </Typography>
-            <Typography variant="h5" color="text.secondary" marginBottom={2} align='center'>
-              From: {props.data.origin}
-            </Typography>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography >
-                Avarage Weight: {avarageWeight}
+            <Box sx={{ display: "flex", justifyContent: "space-evenly", flexDirection: "column" }}>
+              <Typography className='title' variant="h4" component="div" align='center' marginBottom={2}>
+                {props.data.name}
               </Typography>
-              <Typography>
-                Length: {props.data.length}
+              <Typography variant="h5" color="text.secondary" marginBottom={2} align='center'>
+                From: {props.data.origin}
+              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography >
+                  Avarage Weight: {avarageWeight}
+                </Typography>
+                <Typography>
+                  Length: {props.data.length}
+                </Typography>
+              </Box>
+              <Typography align='center' margin={2}>
+                Average Life Expectancy: {avarageLifeExpectency}
               </Typography>
             </Box>
-            <Typography align='center' margin={2}>
-              Average Life Expectancy: {avarageLifeExpectency}
-            </Typography>
-          </Box>
-        <Box>
-          <div className='progress-bar-parent'>
-            <div className='progress-bar-child' style={{width:"20%"}}>
-            </div>
-          </div>
-        </Box>
+            <Box>
+              <div className='progress-bar-parent'>
+                <div className='progress-bar-child' style={{ width: "20%" }}>
+                </div>
+              </div>
+            </Box>
 
-        </CardContent>
-      </CardActionArea>
+          </CardContent>
+        </CardActionArea>
 
 
-    </Card>
+      </Card>
     </>
   )
 }
