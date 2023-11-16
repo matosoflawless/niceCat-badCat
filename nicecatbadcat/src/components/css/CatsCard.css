@@ -1,17 +1,79 @@
 .progress-bar-parent {
     position: relative;
-    height: 20px;
+    height: 25px;
     width: 100%;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 .progress-bar-child {
     position: absolute;
-    bottom: 0;
+    bottom: 0;  
     top: 0;
     left: 0;
     height: 100%;
     border-radius: 6px;
-    
+    margin-left: 40px;
     background-color: green;
+}
+
+.card-main-container {
+    display: flex;
+    width: 500px;
+    min-height: fit-content ;
+    flex-direction: column;
+    border: 3px solid black;
+}
+
+.cat-images-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+}
+
+.cat-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.cat-name-text {
+    text-align: center;
+    font-size: 36px;
+    color: black;
+}
+
+.cat-origin-text {
+    text-align: center;
+    font-size: 28px;
+    color: gray;
+    font-weight: 600;
+}
+
+.cat-weightAndLength-text {
+    display: flex;
+    justify-content: space-between;
+    margin:0 10px 0 10px;
+    color: black;
+    font-weight: 500;
+}
+
+.lifeExpectancy-text {
+    text-align: center;
+    color: gray;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.progress-bars-container {
+    display: flex;
+    flex-direction: column;
+    margin:0 0 20px 20px
 }

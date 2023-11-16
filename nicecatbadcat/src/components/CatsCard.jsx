@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, CardActions } from '@mui/material';
+
+
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+import StarPurple500Icon from '@mui/icons-material/StarPurple500';
+import BrushIcon from '@mui/icons-material/Brush';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import PetsIcon from '@mui/icons-material/Pets';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import "./css/CatsCard.css"
 
@@ -13,88 +18,64 @@ import "./css/CatsCard.css"
 function CatsCard(props) {
 
 
-  const avarageWeight = ((props.data.max_weight + props.data.min_weight) / 2)
-  const avarageLifeExpectency = ((props.data.max_life_expectancy + props.data.min_life_expectancy) / 2)
+    const avarageWeight = ((props.data.max_weight + props.data.min_weight) / 2).toFixed(0)
+    const avarageLifeExpectency = ((props.data.max_life_expectancy + props.data.min_life_expectancy) / 2).toFixed(0)
 
+    // curiosity
+    console.log(0.1 + 0.2)
 
+    return (
 
-
-  // const catsProperties = {
-
-
-  //     origin: catsData.origin.props,
-  //     minWeight: catsData.min_weight.props,
-  //     maxWeight: catsData.max_weight.props,
-  //     length: catsData.length.props,
-  //     maxLife: catsData.max_life_expectancy.props,
-  //     minLife: catsData.min_life_expectancy.props,
-  //     familyFriendly: catsData.family_friendly.props,
-  //     health: catsData.general_health.props,
-  //     playFullNess: catsData.playfulness.props,
-  //     friendWithChildren: catsData.children_friendly.props,
-  //     grooming: catsData.grooming.props,
-  //     intelligence: catsData.intelligence.props,
-  //     friendWithPets: catsData.other_pets_friendly.props,
-  // "family_friendly", general_health", "playfulness", "children_friendly", "grooming", "intelligence", "other_pets_friendly"
-
-  // }
-  // eslint-disable-next-line react/prop-types
-
-
-  return (
-    <>
-      <Card sx={{ width: 450, border: 2, margin: 2, height: "fit-content" }}>
-        <CardActionArea>
-          <CardActions>
-            <Button onClick={() => {
-              props.addToFavourite(props.data)
-            }} size="small" color="primary">
-              Favourite
-            </Button>
-          </CardActions>
-          <CardMedia className='cats_image'
-            component="img"
-            height="350px"
-            image={props.data.image_link}
-            alt="cats"
-            sx={{ objectFit: "cover", width: 1 }}
-
-          />
-          <CardContent>
-
-            <Box sx={{ display: "flex", justifyContent: "space-evenly", flexDirection: "column" }}>
-              <Typography className='title' variant="h4" component="div" align='center' marginBottom={2}>
-                {props.data.name}
-              </Typography>
-              <Typography variant="h5" color="text.secondary" marginBottom={2} align='center'>
-                From: {props.data.origin}
-              </Typography>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography >
-                  Avarage Weight: {avarageWeight}
-                </Typography>
-                <Typography>
-                  Length: {props.data.length}
-                </Typography>
-              </Box>
-              <Typography align='center' margin={2}>
-                Average Life Expectancy: {avarageLifeExpectency}
-              </Typography>
-            </Box>
-            <Box>
-              <div className='progress-bar-parent'>
-                <div className='progress-bar-child' style={{ width: "20%" }}>
+        <div className='card-main-container'>
+            <div className='cat-images-container'>
+                <button className='favorite-button' onClick={() => { props.handleFavourite(props.data) }}>
+                    <FavoriteIcon />
+                </button>
+                <img className='cat-image' src={props.data.image_link} />
+            </div>
+            <div>
+                <p className="cat-name-text">{props.data.name}</p>
+                <p className='cat-origin-text'>From: {props.data.origin}</p>
+                <div className='cat-weightAndLength-text'>
+                    <p>Avarage Weight: {avarageWeight}</p>
+                    <p>Length: {props.data.length}</p>
                 </div>
-              </div>
-            </Box>
+                <p className='lifeExpectancy-text'>Average Life Expectancy: {avarageLifeExpectency}</p>
+            </div>
+            <div className='progress-bars-container'>
+                <div className='progress-bar-parent'>
+                    <FamilyRestroomIcon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.family_friendly * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <HealthAndSafetyIcon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.general_health * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <StarPurple500Icon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.playfulness * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <ChildFriendlyIcon sx={{color:"black"}} />
+                    <div className='progress-bar-child' style={{ width: props.data.children_friendly * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <BrushIcon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.grooming * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <PsychologyIcon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.intelligence * 10 }}> </div>
+                </div>
+                <div className='progress-bar-parent'>
+                    <PetsIcon sx={{color:"black"}}/>
+                    <div className='progress-bar-child' style={{ width: props.data.other_pets_friendly * 10 }}> </div>
+                </div>
+            </div>
 
-          </CardContent>
-        </CardActionArea>
+        </div>
 
-
-      </Card>
-    </>
-  )
+    )
 }
 
 export default CatsCard

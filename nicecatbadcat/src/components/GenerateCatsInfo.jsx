@@ -2,11 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CatsCard from './CatsCard'
 import Searchbar from './Searchbar'
-import { Box } from '@mui/material'
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 
+import "./css/GenerateCatsInfo.css"
 
 function GenerateCatsInfo() {
     //use state para guardar os dados que vem da funcão de request
@@ -14,46 +12,26 @@ function GenerateCatsInfo() {
     const [initialCatsData, setInitialCatsData] = useState([])
     const [favouriteCats, setFavouriteCats] = useState([])
 
+    //modal
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
 
-    // quando eu clickar no botão favorito, algo acontece, algo este que é chamar esta função. 
-    //esta função vai ao meu array de catsData e puxa o elemento que o utilizador selecionar para a lista de gatos faforitos 
-    //1a pergunta : como é que ele sabe qual o elemento que eu estou a selecionar?
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 800,
-        color:"black",
-        display:"flex",
-        gap:"8px",
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-      };
-
-
 
     const handleAddFavourite = (cat) => {
-        if (favouriteCats.some((favCat)=>{
-            return favCat.name === cat.name
-        })) {
+        //iterar sobre o array favouriteCats para ver se o gato que clickamos já existe usando o .some.
+        //se for true ou seja existir um gato com o mesmo nome na lista dos favoritos, ele remove o gato que tenha o mesmo nome do que o que já lá esta
+        //se não existir o gatinho mudamos o estado com os gatos que já lá estavam usando o spread e adicionando o novo gato.
+        const hasCat = favouriteCats.some(favCat => favCat.name === cat.name)
+
+        if (hasCat) {
             setFavouriteCats(favouriteCats.filter(favCat => favCat.name !== cat.name))
         } else {
             setFavouriteCats([...favouriteCats, cat])
         }
     }
-    console.log("gatos favoritos: ", favouriteCats)
 
-
-
-    // "family_friendly", general_health", "playfulness", "children_friendly", "grooming", "intelligence", "other_pets_friendly"
 
     const url = import.meta.env.VITE_APP_URL
     const apiKey = import.meta.env.VITE_APP_API_KEY
@@ -83,7 +61,6 @@ function GenerateCatsInfo() {
             })
             setCatsData(response.data)
             setInitialCatsData(response.data)
-            // console.log(response.data)
 
         }
         catch (error) {
@@ -98,7 +75,7 @@ function GenerateCatsInfo() {
             return
         }
 
-        const filteredCats = catsData.filter((cat) => {
+        const filteredCats = initialCatsData.filter((cat) => {
 
             const searchInput = searchTerm.toLowerCase()
             const nameMatch = cat.name.toLowerCase().includes(searchInput)
@@ -106,42 +83,33 @@ function GenerateCatsInfo() {
 
             return nameMatch || originMatch
         })
-
         setCatsData(filteredCats)
-
-
     }
 
 
     return (
-        <>
+        <div>
+
             <Searchbar handleSearch={handleSearchCatsByNameAndOrigin} />
-            <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          
-           {favouriteCats.map((favCat) => {
-            return <CatsCard key={favCat.name} data={favCat} addToFavourite={handleAddFavourite}/>
-           })}
-          
-         
-        </Box>
-      </Modal>
-            
+            <div className='modal-opener'>
+                <button className='btn btn-shadow btn-shadow--black' onClick={handleOpen}><span>FAVORITES</span></button>
+            </div>
+            <Modal sx={{ overflow: "auto" }} open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <div className='favorites-container'>
+                    {favouriteCats.map((favCat) => {
+                        return <CatsCard key={favCat.name} data={favCat} handleFavourite={handleAddFavourite} />
+                    })}
+                </div>
+            </Modal>
             {/* container que vai levar com as cartas dos gatinhos */}
-            <Box display={"flex"} flexWrap={"wrap"} border={2} borderColor={'black'} alignItems={"center"} justifyContent={"space-around"} margin={5}>
+            <div className='cats-cards-container'>
                 {catsData.map((cat, index) => {
                     return (
-                        <CatsCard key={index} data={cat} addToFavourite={handleAddFavourite} />
-                    )
-                })}
-            </Box>
-        </>
+                        // mudar o nome do addToFavorite
+                        <CatsCard key={index} data={cat} handleFavourite={handleAddFavourite} />)})}
+            </div>
+
+        </div>
     )
 }
 

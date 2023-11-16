@@ -1,0 +1,21 @@
+.modal-opener {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.cats-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}

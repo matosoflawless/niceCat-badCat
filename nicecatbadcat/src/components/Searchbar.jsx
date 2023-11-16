@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
+import "./css/Searchbar.css"
 
 
 
@@ -14,17 +15,10 @@ function Searchbar(props) {
     const handleSearch = () => props.handleSearch(inputValue)
 
 
-
-
-
-
-
-
-
     return (
-        <div>
+        <div className='searchBar-component'>
             <input type="text" onChange={(event) => setInputValue(event.target.value)} />
-            <button onClick={handleSearch}>Search</button>
+            <button className='btn btn-shadow btn-shadow--black' onClick={handleSearch}><span>SEARCH</span></button>
         </div>
     )
 }
